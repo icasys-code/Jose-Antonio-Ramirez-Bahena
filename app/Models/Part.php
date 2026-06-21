@@ -59,9 +59,4 @@ class Part extends Model
             ->withPivot(['fitment_notes','direct_fit'])
             ->withTimestamps();
     }
-
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
 }
