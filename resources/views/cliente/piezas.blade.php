@@ -55,7 +55,7 @@
                         >
                         @if($part->price)
                             <div class="absolute top-3 right-3 bg-yellow-400 text-blue-900 px-3 py-1 rounded font-bold text-sm">
-                                ${{{ number_format($part->price ?? 0, 0) }}}
+                                ${{ number_format($part->price ?? 0, 0) }}
                             </div>
                         @endif
                     </div>
@@ -73,4 +73,65 @@
                             @endif
                         </div>
                         <button 
-                            class="w-full min-h-10 px-4 py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-800 transition cursor-pointer\"\n                            aria-label=\"Ver más detalles de {{ $part->name }}\"\n                        >\n                            Ver detalles\n                        </button>\n                    </div>\n                </div>\n            @empty\n                <div class=\"md:col-span-3 bg-white rounded-lg shadow-md p-12 text-center\">\n                    <p class=\"text-slate-600 text-lg\">No hay piezas disponibles en este momento.</p>\n                </div>\n            @endforelse\n        </div>\n\n        <!-- Pagination -->\n        @if($parts->hasPages())\n            <div class=\"flex justify-center\">\n                {{ $parts->links() }}\n            </div>\n        @endif\n\n        <!-- Categories Section -->\n        <div class=\"mt-16 pt-12 border-t border-slate-200\">\n            <h3 class=\"text-2xl font-bold text-blue-900 mb-8 text-center\">Categorías de Piezas</h3>\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-6\">\n                <a href=\"#\" class=\"group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer\" aria-label=\"Ver categoría de motores\">\n                    <div class=\"text-4xl mb-4\">🔧</div>\n                    <h4 class=\"font-bold text-lg group-hover:text-yellow-400 transition\">Motores</h4>\n                    <p class=\"text-sm text-blue-100 mt-2\">Motores y componentes</p>\n                </a>\n                \n                <a href=\"#\" class=\"group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer\" aria-label=\"Ver categoría de frenos\">\n                    <div class=\"text-4xl mb-4\">🛑</div>\n                    <h4 class=\"font-bold text-lg group-hover:text-yellow-400 transition\">Frenos</h4>\n                    <p class=\"text-sm text-blue-100 mt-2\">Sistema de frenado</p>\n                </a>\n                \n                <a href=\"#\" class=\"group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer\" aria-label=\"Ver categoría de suspensión\">\n                    <div class=\"text-4xl mb-4\">⚙️</div>\n                    <h4 class=\"font-bold text-lg group-hover:text-yellow-400 transition\">Suspensión</h4>\n                    <p class=\"text-sm text-blue-100 mt-2\">Amortiguadores y resortes</p>\n                </a>\n                \n                <a href=\"#\" class=\"group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer\" aria-label=\"Ver categoría de accesorios\">\n                    <div class=\"text-4xl mb-4\">🎁</div>\n                    <h4 class=\"font-bold text-lg group-hover:text-yellow-400 transition\">Accesorios</h4>\n                    <p class=\"text-sm text-blue-100 mt-2\">Accesorios y complementos</p>\n                </a>\n            </div>\n        </div>\n\n        <div class=\"mt-12 text-center\">\n            <a \n                href=\"{{ route('publicar') }}\" \n                class=\"inline-flex items-center justify-center min-h-12 px-8 py-3 bg-yellow-400 text-blue-900 font-semibold rounded-lg hover:bg-yellow-300 cursor-pointer transition\"\n            >\n                ¿Tienes piezas que vender?\n            </a>\n        </div>\n    </div>\n</section>\n@endsection
+                            class="w-full min-h-10 px-4 py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-800 transition cursor-pointer"
+                            aria-label="Ver más detalles de {{ $part->name }}"
+                        >
+                            Ver detalles
+                        </button>
+                    </div>
+                </div>
+            @empty
+                <div class="md:col-span-3 bg-white rounded-lg shadow-md p-12 text-center">
+                    <p class="text-slate-600 text-lg">No hay piezas disponibles en este momento.</p>
+                </div>
+            @endforelse
+        </div>
+
+        <!-- Pagination -->
+        @if($parts->hasPages())
+            <div class="flex justify-center">
+                {{ $parts->withQueryString()->links() }}
+            </div>
+        @endif
+
+        <!-- Categories Section -->
+        <div class="mt-16 pt-12 border-t border-slate-200">
+            <h3 class="text-2xl font-bold text-blue-900 mb-8 text-center">Categorías de Piezas</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="#" class="group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer" aria-label="Ver categoría de motores">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h4 class="font-bold text-lg group-hover:text-yellow-400 transition">Motores</h4>
+                    <p class="text-sm text-blue-100 mt-2">Motores y componentes</p>
+                </a>
+                
+                <a href="#" class="group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer" aria-label="Ver categoría de frenos">
+                    <div class="text-4xl mb-4">🛑</div>
+                    <h4 class="font-bold text-lg group-hover:text-yellow-400 transition">Frenos</h4>
+                    <p class="text-sm text-blue-100 mt-2">Sistema de frenado</p>
+                </a>
+                
+                <a href="#" class="group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer" aria-label="Ver categoría de suspensión">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h4 class="font-bold text-lg group-hover:text-yellow-400 transition">Suspensión</h4>
+                    <p class="text-sm text-blue-100 mt-2">Amortiguadores y resortes</p>
+                </a>
+                
+                <a href="#" class="group block min-h-32 bg-blue-900 text-white p-6 rounded-lg hover:bg-blue-800 transition-all shadow-md hover:shadow-lg cursor-pointer" aria-label="Ver categoría de accesorios">
+                    <div class="text-4xl mb-4">🎁</div>
+                    <h4 class="font-bold text-lg group-hover:text-yellow-400 transition">Accesorios</h4>
+                    <p class="text-sm text-blue-100 mt-2">Accesorios y complementos</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a 
+                href="{{ route('publicar') }}" 
+                class="inline-flex items-center justify-center min-h-12 px-8 py-3 bg-yellow-400 text-blue-900 font-semibold rounded-lg hover:bg-yellow-300 cursor-pointer transition"
+            >
+                ¿Tienes piezas que vender?
+            </a>
+        </div>
+    </div>
+</section>
+@endsection

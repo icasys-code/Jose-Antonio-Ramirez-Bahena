@@ -24,11 +24,13 @@ class PartController extends Controller
 
     public function catalog(Request $request)
     {
-        $query = Part::query()->with(['category', 'manufacturer', 'images']);
+        $query = Part::query()->where('active', true)->with(['category', 'manufacturer', 'images']);
 
         if ($request->has('search') && $request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%')
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
                   ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
         }
 
         $parts = $query->paginate(9);
